@@ -1,0 +1,116 @@
+.bg-cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &>img {
+        display: none;
+    }
+}
+
+/* Gutter helpers */
+
+.gutter-lg {
+    padding: 2.5rem 0;
+
+    @media (min-width: 576px) {
+        padding: 3.5rem 0;
+    }
+
+    @media (min-width: 992px) {
+        padding: 4.5rem 0;
+    }
+
+    @media (min-width: 1200px) {
+        padding: 5.5rem 0;
+    }
+
+    @media (min-width: 1367px) {
+        //according to PSD
+    }
+}
+
+/* Font weight helpers */
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-regular {
+    font-weight: 400;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+/* Text alignment helpers */
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+
+.bg-dark {
+    background-color: $black;
+    color: $white;
+}
+
+.bg-gray {
+    background-color: lighten($black, 20%);
+    color: $white;
+}
+
+@mixin gutter-generator($base-padding, $increment, $media-list...) {
+
+    padding: $base-padding+rem 0;
+
+    @for $i from 0 to length($media-list) {
+        @media (min-width: #{nth($media-list, $i+1)}px) {
+            $calc-padding: $base-padding + $increment;
+            padding: $calc-padding+rem 0;
+            $base-padding: $increment + $base-padding;
+        }
+    }
+}
+
+.gutter-test-1 {
+    @extend .bg-dark;
+    @include gutter-generator(2, 1, '576', '768', '992', '1200');
+}
+
+.gutter-test-2 {
+    @extend .bg-gray;
+    @include gutter-generator(2.5, 1, '576', '768', '992', '1200');
+
+}
+
+.gutter-lg,
+.gutter-test-1,
+.gutter-test-2 {
+    p {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
