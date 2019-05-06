@@ -317,6 +317,10 @@ sup {
   font-size: 75%;
   line-height: 1; }
 
+.aalu-jasto-test {
+  color: #000;
+  font-size: 1rem; }
+
 /* Import COMPONENTS */
 body {
   background: red; }
