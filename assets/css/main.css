@@ -318,4 +318,7 @@ sup {
   line-height: 1; }
 
 /* Import COMPONENTS */
+body {
+  background: red; }
+
 /* Import ElEMENTS */
